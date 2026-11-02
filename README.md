@@ -27,3 +27,14 @@ Static, long-lived AWS IAM access keys stored on local machines create significa
 Request temporary scoped access from PowerShell:
 ```powershell
 python jit_broker.py
+###2. Export Temporary Credentials
+$env:AWS_ACCESS_KEY_ID="<temporary_access_key>"
+$env:AWS_SECRET_ACCESS_KEY="<temporary_secret_key>"
+$env:AWS_SESSION_TOKEN="<temporary_session_token>"
+###3. Verify Assumed Identity
+aws sts get-caller-identity
+###4. Test Scooped Permissions.
+Run authorized read commands against the AWS resources:
+aws s3 ls
+python jit_broker.py
+```
